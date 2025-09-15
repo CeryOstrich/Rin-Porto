@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArinnFolio</title>
+    <link rel="stylesheet" href="style.css"> <!-- Pastikan CSS terhubung dengan benar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav id="Navbar">
+        <div class="logo">
+            <h1>Arinn</h1>
+        </div>
+
+        <ul class="Navbar-Nav">
+            <li><a href="#About">About</a></li>
+            <li><a href="#portfolio">Gallery</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section id="Header">
+        <h2 class="shine">Ne Rinn</h2>
+        <p>Love drawing but i Love to play Genshin and Roblox more</p>
+        <a href="#About" class="cta">See More</a>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="About">
+        <div class="container">
+            <div class="foto">
+                <img src="./img/pp.jpg" alt="Foto Saya" />
+            </div>
+            <div class="content">
+                <h2>About me</h2>
+                <p>Saya seorang illustrator yang berfokus pada ilustrasi karakter, komik, dan desain visual kreatif
+                    lainnya.</p>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Gallery -->
+    <section id="portfolio">
+        <div class="container_porto">
+            <h2>My Work</h2>
+            <div class="portfolio-gallery">
+                <div class="portfolio-item">
+                    <img src="./img/1.jpg" alt="Artwork 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/2.jpg" alt="Artwork 2">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/3.jpg" alt="Artwork 3">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/4.jpg" alt="Artwork 4">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/5.jpg" alt="Artwork 5">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/6.jpg" alt="Artwork 6">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/7.jpg" alt="Artwork 7">
+                </div>
+                <div class="portfolio-item">
+                    <img src="./img/8.jpg" alt="Artwork 8">
+                </div>
+            </div>
+            <div id="modalSaya" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="gambarBesar">
+                <div id="caption"></div>
+            </div>
+    </section>
+    <!-- Gallery End -->
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="service-card">
+                <h3>Commission Sheet</h3>
+                <div class="image-container">
+                    <img src="./img/com.jpg" alt="Service 1">
+                    <img src="./img/com2.jpg" alt="Service 2">
+                </div>
+    </section>
+
+    <!-- Services -->
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Let's Collaborate!</h2>
+        <p>Have a project in mind or just want to say hi? Drop me a message or connect via social media.</p>
+
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send via WhatsApp</button>
+        </form>
+
+        <div class="social-links">
+            <a href="https://tiktok.com/@yourhandle" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://instagram.com/ne.rinn_" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/nessa.arinda.9" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://discord.gg/nerinn299" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Ne.Rinn</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

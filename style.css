@@ -1,0 +1,914 @@
+
+/* Resetting margin, padding, and box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: linear-gradient(to bottom, #0a0f22, #1a1c3c); /* Background yang gelap */;
+    overflow-x: hidden;
+    background-color: #0e0e1a;
+}
+
+#Navbar {
+    background-color: #1a1a2e;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    animation: slideDown 0.8s ease-out forwards;
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+#Navbar .logo h1 {
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Tambahan di CSS kamu */
+#Navbar {
+    /* ... kode CSS yang sudah ada ... */
+    position: fixed; /* Penting! Agar navbar tetap di atas */
+    width: 100%; /* Penting! Agar navbar mengisi lebar penuh */
+    top: 0; /* Penting! Agar navbar berada di paling atas */
+    z-index: 1000; /* Penting! Agar navbar selalu di atas elemen lain */
+    transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Tambahkan transisi untuk smooth effect */
+}
+
+/* Class untuk menyembunyikan navbar */
+.navbar-hidden {
+    transform: translateY(-100%); /* Sembunyikan ke atas */
+    opacity: 0;
+}
+
+.Navbar-Nav {
+    list-style: none;
+    display: flex;
+}
+
+.Navbar-Nav li {
+    margin: 0 20px;
+}
+
+.Navbar-Nav a {
+    color: #fff;
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Navbar-Nav a:hover {
+    color: #5a57ff;
+    background-color: #1f1f3d;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #5a57ff80;
+}
+
+.Navbar-Nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #5a57ff;
+    transition: width 0.4s ease-in-out;
+}
+
+.Navbar-Nav a:hover::after {
+    width: 100%;
+}
+
+
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Header Section */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes blinkGlow {
+    0%, 100% { text-shadow: 0 0 5px #5a57ff, 0 0 10px #5a57ff; }
+    50% { text-shadow: 0 0 20px #ffffff, 0 0 40px #5a57ff; }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+/* ======================================================= */
+/* == KODE TAMBAHAN UNTUK FUNGSI HAMBURGER MENU == */
+/* Letakkan kode ini di akhir file CSS Anda */
+/* ======================================================= */
+
+/* Styling untuk ikon hamburger itu sendiri */
+/* Menggunakan warna putih agar cocok dengan teks Anda */
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #fff; /* Warna garis hamburger */
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Secara default, ikon hamburger kita sembunyikan di layar besar */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px; /* Jarak antar garis */
+    cursor: pointer;
+}
+
+
+/* --- Media Query untuk Tampilan Mobile --- */
+/* Aturan ini berlaku untuk layar dengan lebar 768px ke bawah */
+@media (max-width: 768px) {
+
+    /* Atur ulang layout navbar di mobile agar logo dan ikon hamburger pas */
+    #Navbar {
+        justify-content: space-between;
+        padding: 20px 25px; /* Sedikit sesuaikan padding untuk mobile */
+    }
+
+    /* Tampilkan ikon hamburger di mobile */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Styling ulang .Navbar-Nav untuk menjadi menu overlay */
+    .Navbar-Nav {
+        /* Posisikan menu di luar layar */
+        position: absolute;
+        top: 100%; /* Posisi persis di bawah navbar (karena navbar 'fixed') */
+        right: 0;
+        width: 60%;
+        height: 100vh;
+        
+        /* Gunakan background yang sama dengan navbar Anda */
+        background-color: #1a1a2e;
+        
+        /* Ubah layout menu menjadi vertikal */
+        flex-direction: column;
+        align-items: center; /* Pusatkan item menu */
+        justify-content: flex-start; /* Mulai item dari atas */
+        padding-top: 2rem;
+        
+        /* Sembunyikan menu ke kanan luar layar */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Beri jarak antar item menu di tampilan mobile */
+    .Navbar-Nav li {
+        margin: 1rem 0;
+    }
+    
+    /* Aturan untuk menampilkan menu saat aktif */
+    .Navbar-Nav.active {
+        transform: translateX(0);
+    }
+}
+
+
+/* [Opsional] Animasi ikon hamburger menjadi tanda silang (X) */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+#Header {
+    height: 100vh;
+    background-image: url(./img/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(14, 14, 26, 0.85);
+    background-blend-mode: overlay;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    color: #eee;
+    position: relative;
+    overflow: hidden;
+    gap: 0.1rem; /* tambahkan jarak antar elemen */
+}
+
+#Header h1 {
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 10px;
+}
+
+#Header h2 {
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+#Header p {
+    animation: float 4s ease-in-out infinite;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#Header .shine {
+    background: linear-gradient(90deg, #eee 25%, #5a57ff 50%, #eee 75%);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2s linear infinite;
+}
+
+#Header .cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #5a57ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    animation: float 4s ease-in-out infinite;
+}
+
+#Header .cta:hover {
+    background-color: #4441e0;
+}
+
+
+
+/* About Section */
+@keyframes neonGlow {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+        text-shadow:
+            0 0 5px #5a57ff,
+            0 0 10px #5a57ff,
+            0 0 20px #5a57ff,
+            0 0 40px #443cff;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        text-shadow:
+            0 0 10px #5a57ff,
+            0 0 20px #5a57ff,
+            0 0 30px #5a57ff,
+            0 0 50px #443cff;
+    }
+}
+
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(90, 87, 255, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(90, 87, 255, 0.7); }
+}
+
+#About {
+    height: 100vh;
+    width: 100vw;
+    background-color: #121221;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    color: #eee;
+}
+
+#About .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+#About .foto {
+    flex: 1;
+    padding-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#About .foto img {
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+    border: 10px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#About .foto img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#About .content {
+    flex: 2;
+    max-width: 600px;
+    padding-left: 40px;
+}
+
+#About .content h2 span {
+    display: inline-block;
+    color: #5a57ff;
+    text-shadow:
+        0 0 5px #5a57ff,
+        0 0 10px #5a57ff,
+        0 0 20px #5a57ff,
+        0 0 40px #443cff;
+    animation: neonGlow 1.5s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+/* Apply fun float animation to text block */
+#About .content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
+    animation: floatUpDown 4s ease-in-out infinite;
+}
+
+/* ======================================================= */
+/* == KODE TAMBAHAN UNTUK RESPONSIVITAS SECTION ABOUT == */
+/* Letakkan kode ini di akhir file CSS Anda */
+/* ======================================================= */
+
+/* --- Aturan untuk Tablet dan HP (Layar 768px ke bawah) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Atur ulang tinggi section agar menyesuaikan konten yang sekarang vertikal */
+    #About {
+        height: auto; /* Ganti 100vh menjadi auto */
+        padding: 80px 20px; /* Beri padding vertikal agar tidak terlalu mepet */
+    }
+
+    /* 2. Ubah layout container utama dari horizontal menjadi vertikal */
+    #About .container {
+        flex-direction: column; /* Ini akan menyusun .foto dan .content ke bawah */
+        text-align: center; /* Agar teks di bawahnya juga rata tengah */
+        animation: none; /* Opsional: Matikan animasi pulse di mobile jika terasa berlebihan */
+    }
+
+    /* 3. Atur ulang spacing untuk .foto */
+    #About .foto {
+        padding-right: 0; /* Hapus padding kanan yang tidak perlu lagi */
+        margin-bottom: 30px; /* Beri jarak bawah antara foto dan teks */
+    }
+
+    /* 4. Sesuaikan ukuran gambar agar proporsional di mobile */
+    #About .foto img {
+        width: 60%; /* Ukuran 60% sudah cukup baik, bisa disesuaikan */
+        max-width: 250px; /* Batasi lebar maksimum agar tidak terlalu besar di HP layar lebar */
+    }
+
+    /* 5. Atur ulang spacing untuk .content */
+    #About .content {
+        padding-left: 0; /* Hapus padding kiri yang tidak perlu lagi */
+        max-width: 100%; /* Izinkan konten mengisi lebar penuh */
+    }
+    
+    /* 6. Opsional: Sesuaikan ukuran font agar lebih nyaman dibaca di layar kecil */
+    #About .content h2 {
+        font-size: 1.8rem;
+    }
+
+    #About .content p {
+        font-size: 0.95rem;
+        animation: none; /* Opsional: Matikan animasi mengambang jika tidak diinginkan di mobile */
+    }
+}
+
+/* --- Aturan Tambahan untuk HP yang Sangat Kecil (Layar 480px ke bawah) --- */
+@media (max-width: 480px) {
+    #About .foto img {
+        width: 70%; /* Buat gambar sedikit lebih besar di layar yang sangat kecil */
+    }
+
+    #About .content h2 {
+        font-size: 1.5rem;
+    }
+
+    #About .content p {
+        font-size: 0.9rem;
+    }
+}
+
+#portfolio {
+  background-color: #121221;
+  color: #fff;
+  padding: 60px 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container_porto {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #ddd;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Shadow effect for text */
+}
+
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid otomatis untuk responsivitas */
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi efek */
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Menyesuaikan gambar dalam kotak tanpa merusak rasio */
+  border-radius: 16px;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.05); /* Efek zoom pada gambar */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* Shadow yang lebih kuat saat hover */
+}
+
+.portfolio-item img:hover {
+  transform: scale(1.1); /* Zoom sedikit pada gambar saat hover */
+  cursor: pointer; /* Menampilkan pointer saat hover */
+}
+
+/* ================================== */
+/* == MODAL (POP-UP) STYLING == */
+/* ================================== */
+.modal {
+    display: none; /* Sembunyikan secara default */
+    position: fixed; /* Tetap di posisi layar, bahkan saat scroll */
+    z-index: 999; /* Pastikan berada di lapisan paling atas */
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Aktifkan scroll jika gambar terlalu tinggi */
+    background-color: rgba(0, 0, 0, 0.9); /* Latar belakang hitam transparan */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%; /* Baik untuk layar mobile */
+    max-width: 450px; /* Ukuran maksimum agar tidak terlalu besar di desktop */
+    animation-name: zoom;
+    animation-duration: 0.5s;
+}
+
+/* Animasi zoom saat modal muncul */
+@keyframes zoom {
+    from { transform: scale(0) }
+    to { transform: scale(1) }
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 15px 0;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* ======================================================= */
+/* == PENYEMPURNAAN RESPONSIVITAS SECTION PORTFOLIO == */
+/* Letakkan kode ini di akhir file CSS Anda */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+
+    /* 1. Atur ulang padding utama section agar tidak terlalu besar di mobile */
+    #portfolio {
+        padding: 40px 0;
+    }
+
+    /* 2. Perlebar container agar galeri tidak terlalu sempit di mobile */
+    .container_porto {
+        width: 90%; /* Menggunakan 90% lebar layar, bukan 80% */
+    }
+
+    /* 3. Sesuaikan ukuran font judul agar tidak terlalu dominan */
+    .container_porto h2 {
+        font-size: 2em; /* Kecilkan sedikit ukuran font H2 */
+        margin-bottom: 30px;
+    }
+
+    /* 4. Kurangi sedikit gap antar gambar di galeri */
+    .portfolio-gallery {
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .container_porto {
+        width: 95%; /* Gunakan hampir seluruh lebar layar di HP yang sangat kecil */
+    }
+    
+    .container_porto h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Services Section */
+#services {
+background-color: #121221;
+    padding: 60px 20px;
+    color: #212121;
+}
+
+#services h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #5a57ff;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: #1a1a2e;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 10px;
+    border: 1px solid #333;
+    color: #ddd;
+}
+
+.service-card h3 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #5a57ff;
+}
+
+.service-card .image-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.service-card .image-container img {
+    width: 48%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-card p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+/* ======================================================= */
+/* == KODE TAMBAHAN UNTUK RESPONSIVITAS SECTION SERVICES == */
+/* Letakkan kode ini di akhir file CSS Anda */
+/* ======================================================= */
+
+/* --- Aturan untuk Tablet dan HP (Layar 768px ke bawah) --- */
+@media (max-width: 768px) {
+
+    /* 1. Ubah layout container gambar menjadi vertikal */
+    .service-card .image-container {
+        flex-direction: column; /* Ini akan menyusun gambar ke bawah */
+        align-items: center;    /* Pusatkan gambar di tengah kartu */
+        gap: 15px;              /* Beri sedikit jarak antar gambar */
+    }
+
+    /* 2. Atur ulang lebar gambar agar mengisi ruang dan terlihat jelas */
+    .service-card .image-container img {
+        width: 100%; /* Buat setiap gambar mengisi 100% lebar container-nya */
+        max-width: 400px; /* Batasi lebar maksimum agar tidak terlalu besar */
+    }
+
+    /* 3. Sesuaikan ukuran font agar lebih mudah dibaca di mobile */
+    #services h1 {
+        font-size: 2em;
+    }
+    
+    .service-card h3 {
+        font-size: 1.8em;
+    }
+
+    .service-card p,
+    .service-card .cta {
+        font-size: 1rem;
+    }
+    
+    /* 4. Kurangi sedikit padding pada service-card agar lebih pas */
+    .service-card {
+        padding: 20px 15px;
+    }
+}
+
+/* --- Aturan Tambahan untuk HP yang Sangat Kecil (Layar 480px ke bawah) --- */
+@media (max-width: 480px) {
+    #services {
+        padding: 40px 10px; /* Kurangi padding section */
+    }
+    
+    .service-card h3 {
+        font-size: 1.5em;
+    }
+
+    .service-card p,
+    .service-card .cta {
+        font-size: 0.95rem;
+    }
+}
+/* ======================================================= */
+/* ==                 STYLE DASAR (DESKTOP)             == */
+/* ======================================================= */
+
+/* --- Contact Section --- */
+#contact {
+    background-color: #0e0e1a;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#contact p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #aaa;
+}
+
+#contact-form {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 15px;
+    background-color: #1a1a2e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+    color: #888;
+}
+
+#contact-form button {
+    padding: 15px;
+    background-color: #5a57ff;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contact-form button:hover {
+    background-color: #4441e0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #5a57ff;
+}
+
+.social-links i {
+    font-size: 1.5rem;
+}
+
+/* --- Footer Section --- */
+footer {
+    background-color: #1a1a2e;
+    padding: 40px 20px;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+footer a {
+    color: #5a57ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* ======================================================= */
+/* ==      ATURAN RESPONSIVE (TABLET & MOBILE)        == */
+/* ======================================================= */
+
+/* --- Aturan untuk Tablet & HP (Layar 768px ke bawah) --- */
+/* ======================================================= */
+/* ==      ATURAN RESPONSIVE (TABLET & MOBILE)        == */
+/* ======================================================= */
+
+/* --- Aturan untuk Tablet & HP (Layar 768px ke bawah) --- */
+@media (max-width: 768px) {
+
+    /* === Penyesuaian Section Contact === */
+    #contact {
+        padding: 40px 20px;
+    }
+
+    #contact h2 {
+        font-size: 2em;
+    }
+
+    #contact p {
+        font-size: 1rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* === Penyesuaian Form Kontak === */
+    #contact-form {
+        width: 90%;
+    }
+    
+    #contact-form input,
+    #contact-form textarea,
+    #contact-form button {
+        font-size: 1rem;
+    }
+
+    /* === Penyesuaian Social Media Links (LEBIH KECIL) === */
+    .social-links {
+        gap: 15px; /* Jarak antar ikon diperkecil */
+    }
+
+    .social-links a {
+        font-size: 0.9rem; /* DIUBAH: Font nama diperkecil */
+    }
+
+    .social-links i {
+        font-size: 1.2rem; /* DIUBAH: Ukuran ikon diperkecil */
+    }
+
+
+    /* === Penyesuaian Footer (LEBIH KECIL) === */
+    footer {
+        padding: 25px 20px; /* DIUBAH: Padding vertikal dikurangi */
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px; /* DIUBAH: Jarak antar baris diperkecil */
+    }
+    
+    .footer-container p {
+        font-size: 0.8rem; /* DIUBAH: Font footer diperkecil */
+    }
+}
+
+
+/* --- Aturan Tambahan untuk HP yang Sangat Kecil (Layar 480px ke bawah) --- */
+@media (max-width: 480px) {
+    
+    #contact h2 {
+        font-size: 1.8em;
+    }
+
+    #contact p {
+        font-size: 0.9rem;
+    }
+
+    #contact-form {
+        width: 95%;
+    }
+
+    .social-links a {
+        font-size: 0.85rem; /* DIUBAH: Diperkecil lagi untuk layar sangat kecil */
+    }
+
+    .social-links i {
+        font-size: 1.1rem; /* DIUBAH: Ikon juga diperkecil lagi */
+    }
+    
+    .footer-container p {
+        font-size: 0.75rem; /* DIUBAH: Font footer dibuat sangat kecil */
+    }
+}
